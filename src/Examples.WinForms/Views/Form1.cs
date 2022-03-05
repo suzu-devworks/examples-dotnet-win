@@ -1,11 +1,13 @@
-﻿using System;
+using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Examples.WinForms.Abstractions.Messaging;
 using Examples.WinForms.Controls.Bindable;
 using Examples.WinForms.Controls.Extensions;
 using Examples.WinForms.Extensions;
+using Examples.WinForms.Themes;
 using Examples.WinForms.ViewModels;
 
 namespace Examples.WinForms.Views
@@ -39,13 +41,14 @@ namespace Examples.WinForms.Views
             this.textBox2.AddTextBinding(_Vm.Name, nameof(_Vm.Name.Value));
             this.label3.AddTextBinding(_Vm, nameof(_Vm.UpperName));
 
-
-
-
             // Tab Page ICommand
             //this.button2.Bind(_Vm.ShowMessageCommand);
             this.button3.Bind(_Vm.CloseCommand);
 
+            ToolStripProfessionalRenderer renderer = new VS2019Renderer(Color.FromArgb(241, 241, 241), new VS2019ColorTable());
+            renderer.RoundedEdges = false;
+            ToolStripManager.Renderer = renderer;
+            ToolStripManager.VisualStylesEnabled = true;
 
         }
 
